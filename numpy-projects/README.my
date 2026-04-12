@@ -1,0 +1,16 @@
+# Movie Recommendation System
+
+Bu proje, kullanıcıların film puanlarına göre benzer kullanıcıları bulur ve film önerileri yapar.
+
+## Özellikler
+
+- Kullanıcı giriş sistemi
+- NumPy ile veri işleme
+- Kosinüs benzerliği hesaplama
+- Film öneri algoritması
+
+## Kullanılan Teknolojiler
+
+- Python
+- NumPy
+
