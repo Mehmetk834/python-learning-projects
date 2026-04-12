@@ -1,43 +1,33 @@
-"""
-NumPy Kullanarak Film Öneri Sistemi
-
-Kullanıcılar sisteme kullanıcı adı ve şifre ile giriş yapar.
-Giriş yapan kullanıcının film puanları diğer kullanıcılarla
-kosinüs benzerliği kullanılarak karşılaştırılır.
-
-En çok benzeyen kullanıcı bulunur ve onun izlediği fakat
-giriş yapan kullanıcının izlemediği filmler önerilir.
-"""
 
 import numpy as np
 
-movies = ["Titanic", "Matris", "Interstellar", "Batman", "Avatar"]
+filmler = ["Titanic", "Matrix", "Interstellar", "Batman", "Avatar"]
 
-ratings = np.array([
+puanlar = np.array([
     [5,4,0,0,3],
     [5,0,4,0,0],
     [0,4,5,3,0],
     [0,0,4,5,4]
 ])
 
-users = ["Kullanıcı 1", "Kullanıcı 2", "Kullanıcı 3", "Kullanıcı 4"]
+kullanicilar = ["Kullanıcı 1", "Kullanıcı 2", "Kullanıcı 3", "Kullanıcı 4"]
 
-usernames = ["kullanici1", "kullanici2", "kullanici3", "kullanici4"]
-passwords = ["123", "456", "789", "abc"]
+kullanici_adlari = ["kullanici1", "kullanici2", "kullanici3", "kullanici4"]
+sifreler = ["123", "456", "789", "abc"]
 
 print("=== Film Öneri Sistemine Hoş Geldiniz ===\n")
 
-username_input = input("Kullanıcı adınızı girin: ")
-password_input = input("Şifrenizi girin: ")
+kullanici_adi_giris = input("Kullanıcı adınızı girin: ")
+sifre_giris = input("Şifrenizi girin: ")
 
-if username_input in usernames:
+if kullanici_adi_giris in kullanici_adlari:
 
-    user_index = usernames.index(username_input)
+    kullanici_index = kullanici_adlari.index(kullanici_adi_giris)
 
-    if passwords[user_index] == password_input:
+    if sifreler[kullanici_index] == sifre_giris:
         print("\nGiriş başarılı!\n")
-        target_user_index = user_index
-        target_user = ratings[target_user_index]
+        hedef_kullanici_index = kullanici_index
+        hedef_kullanici = puanlar[hedef_kullanici_index]
 
     else:
         print("Şifre yanlış!")
@@ -48,44 +38,44 @@ else:
     exit()
 
 
-def cosine_similarity(a, b):
+def kosinus_benzerligi(a, b):
 
-    dot_product = np.dot(a, b)
+    skaler_carpim = np.dot(a, b)
 
     norm_a = np.linalg.norm(a)
     norm_b = np.linalg.norm(b)
 
-    similarity = dot_product / (norm_a * norm_b)
+    benzerlik = skaler_carpim / (norm_a * norm_b)
 
-    return similarity
-
-
-similarities = []
-
-for user in ratings:
-    result = cosine_similarity(target_user, user)
-    similarities.append(result)
-
-similarities = np.array(similarities)
-
-similarities[target_user_index] = 0
-
-most_similar_user = np.argmax(similarities)
+    return benzerlik
 
 
-recommended_movies = []
+benzerlikler = []
 
-for i in range(len(movies)):
-    if target_user[i] == 0 and ratings[most_similar_user][i] > 0:
-        recommended_movies.append(movies[i])
+for kullanici in puanlar:
+    sonuc = kosinus_benzerligi(hedef_kullanici, kullanici)
+    benzerlikler.append(sonuc)
+
+benzerlikler = np.array(benzerlikler)
+
+benzerlikler[hedef_kullanici_index] = 0
+
+en_benzer_kullanici = np.argmax(benzerlikler)
 
 
-print("Size en çok benzeyen kullanıcı:", users[most_similar_user])
+onerilen_filmler = []
+
+for i in range(len(filmler)):
+    if hedef_kullanici[i] == 0 and puanlar[en_benzer_kullanici][i] > 0:
+        onerilen_filmler.append(filmler[i])
+
+
+print("Size en çok benzeyen kullanıcı:", kullanicilar[en_benzer_kullanici])
 
 print("\nÖnerilen filmler:")
 
-if len(recommended_movies) == 0:
+if len(onerilen_filmler) == 0:
     print("Size önerilecek yeni film bulunamadı.")
 else:
-    for movie in recommended_movies:
-        print("-", movie)
+    for film in onerilen_filmler:
+        print("-", film)
