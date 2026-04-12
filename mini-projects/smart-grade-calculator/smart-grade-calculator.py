@@ -1,58 +1,58 @@
-courses = []
-grades = []
+dersler = []
+notlar = []
 
-course_count = int(input("How many courses will you enter: "))
+ders_sayisi = int(input("Kaç ders gireceksiniz: "))
 
-for i in range(course_count):
-    course_name = input(f"{i+1}. course name: ")
+for i in range(ders_sayisi):
+    ders_adi = input(f"{i+1}. ders adı: ")
 
-    grade = int(input("Enter grade (0-100): "))
-    while grade < 0 or grade > 100:
-        print("Invalid grade! Enter between 0-100.")
-        grade = int(input("Enter grade (0-100): "))
+    not_degeri = int(input("Not giriniz (0-100): "))
+    while not_degeri < 0 or not_degeri > 100:
+        print("Geçersiz not! 0-100 arasında giriniz.")
+        not_degeri = int(input("Not giriniz (0-100): "))
 
-    courses.append(course_name)
-    grades.append(grade)
+    dersler.append(ders_adi)
+    notlar.append(not_degeri)
 
-total = sum(grades)
-average = total / course_count
+toplam = sum(notlar)
+ortalama = toplam / ders_sayisi
 
-print("Average:", average)
+print("Ortalama:", ortalama)
 
-if 90 <= average <= 100:
-    letter = "AA"
-elif 85 <= average <= 89:
-    letter = "BA"
-elif 80 <= average <= 84:
-    letter = "BB"
-elif 75 <= average <= 79:
-    letter = "CB"
-elif 70 <= average <= 74:
-    letter = "CC"
-elif 65 <= average <= 69:
-    letter = "DC"
-elif 60 <= average <= 64:
-    letter = "DD"
-elif 50 <= average <= 59:
-    letter = "FD"
+if 90 <= ortalama <= 100:
+    harf = "AA"
+elif 85 <= ortalama <= 89:
+    harf = "BA"
+elif 80 <= ortalama <= 84:
+    harf = "BB"
+elif 75 <= ortalama <= 79:
+    harf = "CB"
+elif 70 <= ortalama <= 74:
+    harf = "CC"
+elif 65 <= ortalama <= 69:
+    harf = "DC"
+elif 60 <= ortalama <= 64:
+    harf = "DD"
+elif 50 <= ortalama <= 59:
+    harf = "FD"
 else:
-    letter = "FF"
+    harf = "FF"
 
-print("Letter Grade:", letter)
-print("Status:", "Passed" if average >= 50 else "Failed")
-
-
-def find_highest_grade(courses, grades):
-    highest = max(grades)
-    index = grades.index(highest)
-    print(f"Highest grade: {highest} ({courses[index]})")
+print("Harf Notu:", harf)
+print("Durum:", "Geçti" if ortalama >= 50 else "Kaldı")
 
 
-def find_lowest_grade(courses, grades):
-    lowest = min(grades)
-    index = grades.index(lowest)
-    print(f"Lowest grade: {lowest} ({courses[index]})")
+def en_yuksek_notu_bul(dersler, notlar):
+    en_yuksek = max(notlar)
+    index = notlar.index(en_yuksek)
+    print(f"En yüksek not: {en_yuksek} ({dersler[index]})")
 
 
-find_highest_grade(courses, grades)
-find_lowest_grade(courses, grades)
+def en_dusuk_notu_bul(dersler, notlar):
+    en_dusuk = min(notlar)
+    index = notlar.index(en_dusuk)
+    print(f"En düşük not: {en_dusuk} ({dersler[index]})")
+
+
+en_yuksek_notu_bul(dersler, notlar)
+en_dusuk_notu_bul(dersler, notlar)
