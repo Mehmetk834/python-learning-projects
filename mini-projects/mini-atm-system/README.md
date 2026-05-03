@@ -1,11 +1,10 @@
 # Mini ATM System
 
-Bu proje, basit bir ATM sistemini simüle eder.
+This project simulates a simple ATM system.
 
-## Özellikler
+## Features
 
-- Bakiye görüntüleme
-- Para yatırma
-- Para çekme
-- Kullanıcı işlemleri
-
+- View balance  
+- Deposit money  
+- Withdraw money  
+- User operations  
