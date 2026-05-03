@@ -1,81 +1,80 @@
+balance = 0
+correct_username = "Mehmet"
+correct_password = 12345
+login_attempts = 3
+transaction_history = []
 
-bakiye = 0
-dogru_kullanici_adi = "Mehmet"
-dogru_sifre = 12345
-giris_hakki = 3
-islem_gecmisi = []
 
-
-while giris_hakki > 0:
-    girilen_kullanici_adi = input("Kullanıcı adınızı giriniz: ")
+while login_attempts > 0:
+    entered_username = input("Enter your username: ")
 
     try:
-        girilen_sifre = int(input("Şifrenizi giriniz: "))
+        entered_password = int(input("Enter your password: "))
     except ValueError:
-        print("Şifre sadece sayı olmalıdır.")
+        print("Password must be numeric.")
         continue
 
-    if girilen_kullanici_adi == dogru_kullanici_adi and girilen_sifre == dogru_sifre:
-        print("Giriş başarılı.")
+    if entered_username == correct_username and entered_password == correct_password:
+        print("Login successful.")
 
         while True:
-            print("\n--- ATM MENÜ ---")
-            print("1 - Bakiye Görüntüle")
-            print("2 - Para Yatır")
-            print("3 - Para Çek")
-            print("4 - İşlem Geçmişi")
-            print("5 - Çıkış")
+            print("\n--- ATM MENU ---")
+            print("1 - View Balance")
+            print("2 - Deposit Money")
+            print("3 - Withdraw Money")
+            print("4 - Transaction History")
+            print("5 - Exit")
 
-            secim = input("Seçiminiz: ")
+            choice = input("Your choice: ")
 
-            if secim == "1":
-                print("Mevcut bakiyeniz:", bakiye)
+            if choice == "1":
+                print("Your current balance:", balance)
 
-            elif secim == "2":
+            elif choice == "2":
                 try:
-                    yatirilan_miktar = int(input("Yatırmak istediğiniz tutar: "))
-                    if yatirilan_miktar > 0:
-                        bakiye += yatirilan_miktar
-                        islem_gecmisi.append(f"{yatirilan_miktar} TL yatırıldı")
-                        print("Para yatırıldı. Güncel bakiyeniz:", bakiye)
+                    deposit_amount = int(input("Enter amount to deposit: "))
+                    if deposit_amount > 0:
+                        balance += deposit_amount
+                        transaction_history.append(f"{deposit_amount} TL deposited")
+                        print("Money deposited. Current balance:", balance)
                     else:
-                        print("Miktar 0'dan büyük olmalıdır.")
+                        print("Amount must be greater than 0.")
                 except ValueError:
-                    print("Lütfen sadece sayı giriniz.")
+                    print("Please enter numbers only.")
 
-            elif secim == "3":
+            elif choice == "3":
                 try:
-                    cekilen_miktar = int(input("Çekmek istediğiniz tutar: "))
-                    if cekilen_miktar > 0 and cekilen_miktar <= bakiye:
-                        bakiye -= cekilen_miktar
-                        islem_gecmisi.append(f"{cekilen_miktar} TL çekildi")
-                        print("Para çekildi. Güncel bakiyeniz:", bakiye)
+                    withdraw_amount = int(input("Enter amount to withdraw: "))
+                    if withdraw_amount > 0 and withdraw_amount <= balance:
+                        balance -= withdraw_amount
+                        transaction_history.append(f"{withdraw_amount} TL withdrawn")
+                        print("Money withdrawn. Current balance:", balance)
                     else:
-                        print("Yetersiz bakiye veya geçersiz miktar.")
+                        print("Insufficient balance or invalid amount.")
                 except ValueError:
-                    print("Lütfen sadece sayı giriniz.")
+                    print("Please enter numbers only.")
 
-            elif secim == "4":
-                if len(islem_gecmisi) == 0:
-                    print("Henüz işlem yapılmadı.")
+            elif choice == "4":
+                if len(transaction_history) == 0:
+                    print("No transactions yet.")
                 else:
-                    print("\nİşlem Geçmişi:")
-                    for islem in islem_gecmisi:
-                        print("-", islem)
+                    print("\nTransaction History:")
+                    for transaction in transaction_history:
+                        print("-", transaction)
 
-            elif secim == "5":
-                print("Çıkış yapılıyor.")
+            elif choice == "5":
+                print("Exiting.")
                 break
 
             else:
-                print("Geçersiz seçim.")
+                print("Invalid selection.")
 
         break
 
     else:
-        giris_hakki -= 1
-        print("Kullanıcı adı veya şifre yanlış.")
-        print("Kalan hakkınız:", giris_hakki)
+        login_attempts -= 1
+        print("Incorrect username or password.")
+        print("Remaining attempts:", login_attempts)
 
-        if giris_hakki == 0:
-            print("Hesabınız bloke edildi.")
+        if login_attempts == 0:
+            print("Your account has been blocked.")
