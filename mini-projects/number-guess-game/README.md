@@ -1,10 +1,9 @@
 # Number Guessing Game
 
-Bu proje, kullanıcının 1 ile 100 arasında bir sayıyı tahmin etmesini sağlar.
+This project allows the user to guess a number between 1 and 100.
 
-## Özellikler
+## Features
 
-- Rastgele sayı üretimi
-- Tahmin kontrolü
-- Skor sistemi
-
+- Random number generation  
+- Guess checking  
+- Scoring system  
