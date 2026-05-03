@@ -1,44 +1,44 @@
 import random
 
-tutulan_sayi = random.randint(1, 100)
-kalan_hak = 4
-puan = 100
-deneme_sayisi = 0
+secret_number = random.randint(1, 100)
+remaining_attempts = 4
+score = 100
+attempt_count = 0
 
-print("1 ile 100 arasında bir sayı tahmin et")
-print(f"Başlangıç puanın: {puan}")
+print("Guess a number between 1 and 100")
+print(f"Starting score: {score}")
 
-while kalan_hak > 0:
+while remaining_attempts > 0:
     try:
-        tahmin = int(input("Tahminin: "))
+        guess = int(input("Your guess: "))
     except ValueError:
-        print("Lütfen sadece sayı gir")
+        print("Please enter numbers only")
         continue
 
-    if tahmin < 1 or tahmin > 100:
-        print("1 ile 100 arasında bir sayı gir")
+    if guess < 1 or guess > 100:
+        print("Enter a number between 1 and 100")
         continue
 
-    deneme_sayisi += 1
+    attempt_count += 1
 
-    if tahmin == tutulan_sayi:
-        print(f"Tebrikler! {deneme_sayisi}. denemede bildin 🎉")
-        print(f"Puanın: {puan}")
+    if guess == secret_number:
+        print(f"Congratulations! You guessed it on the {attempt_count}th try")
+        print(f"Your score: {score}")
         break
 
-    kalan_hak -= 1
-    puan -= 25
+    remaining_attempts -= 1
+    score -= 25
 
-    if kalan_hak == 0:
-        print("Hakkın bitti")
-        print(f"Doğru sayı: {tutulan_sayi}")
-        print(f"Puanın: {puan}")
+    if remaining_attempts == 0:
+        print("No attempts left")
+        print(f"The correct number was: {secret_number}")
+        print(f"Your score: {score}")
         break
 
-    if tahmin < tutulan_sayi:
-        print("Daha büyük bir sayı gir")
+    if guess < secret_number:
+        print("Enter a higher number")
     else:
-        print("Daha küçük bir sayı gir")
+        print("Enter a lower number")
 
-    print(f"Kalan hak: {kalan_hak}")
-    print(f"Kalan puan: {puan}")
+    print(f"Remaining attempts: {remaining_attempts}")
+    print(f"Remaining score: {score}")
