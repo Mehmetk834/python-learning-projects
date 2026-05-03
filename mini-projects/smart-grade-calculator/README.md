@@ -1,11 +1,10 @@
 # Smart Grade Calculator
 
-Bu proje, girilen ders notlarına göre ortalama ve harf notu hesaplar.
+This project calculates the average and letter grade based on the entered course grades.
 
-## Özellikler
+## Features
 
-- Ders ve not girişi
-- Ortalama hesaplama
-- Harf notu belirleme
-- Geçti/Kaldı durumu
-
+- Course and grade input  
+- Average calculation  
+- Letter grade determination  
+- Pass/Fail status  
